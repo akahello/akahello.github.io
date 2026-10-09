@@ -3,348 +3,203 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>akahello · 机器学习研究主页</title>
-<meta name="description" content="akahello 的个人主页 — 机器遗忘 / AI 安全 / 强化学习与生成式智能体。">
-<meta property="og:title" content="akahello · 机器学习研究主页">
-<meta property="og:description" content="机器遗忘 · AI 安全与隐私 · 强化与模仿学习 · LLM 与智能体">
+<title>akahello · 个人简历</title>
+<meta name="description" content="akahello 的个人简历 — 机器遗忘 / AI 安全与隐私 / 强化与模仿学习。">
+<meta property="og:title" content="akahello · 个人简历">
+<meta property="og:description" content="机器遗忘 · AI 安全与隐私 · 强化与模仿学习">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0e13'/%3E%3Ctext x='32' y='44' font-family='Didot,Georgia,serif' font-style='italic' font-size='38' fill='%23d9a441' text-anchor='middle'%3Ea.%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ffffff'/%3E%3Crect width='64' height='64' rx='12' fill='none' stroke='%232456c4' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' fill='%232456c4' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
 <style>
   :root{
-    --ink:#0e0e13;
-    --ink-2:#15151d;
-    --ink-3:#1c1c26;
-    --paper:#ece4d4;
-    --paper-dim:#b0a692;
-    --paper-faint:#7a7264;
-    --amber:#d9a441;
-    --amber-bright:#f0c168;
-    --amber-deep:#8f6a24;
-    --line:rgba(236,228,212,.13);
-    --serif:"Didot","Bodoni 72","Playfair Display",Georgia,"Songti SC","Noto Serif CJK SC","STSong",serif;
-    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --text:#1f2328;
+    --text-2:#57606a;
+    --text-3:#8b949e;
+    --line:#e4e7eb;
+    --accent:#2456c4;
+    --bg:#ffffff;
+    --bg-soft:#f6f8fa;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
   body{
-    background:var(--ink);
-    color:var(--paper);
-    font-family:var(--serif);
-    font-size:17px;
+    background:var(--bg-soft);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+    font-size:15px;
     line-height:1.75;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
   }
-  ::selection{background:var(--amber);color:var(--ink)}
+  .page{
+    max-width:860px;
+    margin:32px auto 64px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:clamp(28px,6vw,56px) clamp(24px,6vw,56px);
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
 
-  /* ---------- atmosphere ---------- */
-  .glow{
-    position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:
-      radial-gradient(52rem 30rem at 78% -8%,rgba(217,164,65,.10),transparent 60%),
-      radial-gradient(40rem 26rem at -10% 108%,rgba(217,164,65,.06),transparent 60%);
+  /* ---------- header ---------- */
+  header{
+    display:flex;gap:24px;align-items:center;
+    padding-bottom:24px;border-bottom:1px solid var(--line);
   }
-  .grain{
-    position:fixed;inset:-100%;pointer-events:none;z-index:1;opacity:.05;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
-    animation:grain 7s steps(6) infinite;
-  }
-  @keyframes grain{
-    0%,100%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}
-    40%{transform:translate(3%,-5%)}60%{transform:translate(-3%,-2%)}80%{transform:translate(4%,4%)}
-  }
-
-  .wrap{position:relative;z-index:2;max-width:1060px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
-
-  /* ---------- hero ---------- */
-  header{padding:clamp(48px,9vh,96px) 0 40px;position:relative}
-  .topline{
-    display:flex;justify-content:space-between;align-items:center;
-    font-family:var(--mono);font-size:12px;letter-spacing:.18em;
-    color:var(--paper-faint);text-transform:uppercase;
-    border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:clamp(36px,7vh,72px);
-  }
-  .topline a{color:var(--paper-dim);text-decoration:none;transition:color .25s}
-  .topline a:hover{color:var(--amber-bright)}
-
-  .hero{display:grid;grid-template-columns:1fr auto;gap:clamp(28px,6vw,72px);align-items:end}
-  .hero h1{
-    font-size:clamp(64px,11vw,132px);
-    font-weight:400;line-height:.94;letter-spacing:-.015em;
-    font-style:italic;
-  }
-  .hero h1 .dot{color:var(--amber);font-style:normal}
-  .hero .sub{
-    margin-top:26px;font-size:clamp(18px,2.4vw,23px);color:var(--paper-dim);
-    max-width:34em;
-  }
-  .hero .sub em{color:var(--amber-bright);font-style:normal}
-  .hero .meta{
-    margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 28px;
-    font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--paper-faint);
-  }
-  .hero .meta b{color:var(--paper-dim);font-weight:400}
-  .avatar-box{position:relative;padding:0 0 14px 14px}
-  .avatar-box::before{
-    content:"";position:absolute;top:-14px;right:-14px;bottom:0;left:0;
-    border:1px solid var(--amber-deep);border-radius:50%;
-  }
-  .avatar{
-    position:relative;width:clamp(120px,16vw,180px);height:clamp(120px,16vw,180px);
-    border-radius:50%;object-fit:cover;display:block;
-    filter:saturate(.85) contrast(1.05);border:1px solid var(--line);
-    transition:filter .4s;
-  }
-  .avatar-box:hover .avatar{filter:saturate(1.05) contrast(1.05)}
-  .side-label{
-    position:absolute;right:calc(clamp(20px,5vw,56px) * -1 + 8px);top:52%;
-    writing-mode:vertical-rl;
-    font-family:var(--mono);font-size:11px;letter-spacing:.5em;
-    color:var(--paper-faint);opacity:.7;
-  }
-
-  /* ---------- ticker ---------- */
-  .ticker{
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    overflow:hidden;white-space:nowrap;margin:26px 0 0;
-    font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--paper-faint);
-    padding:11px 0;
-  }
-  .ticker span{display:inline-block;animation:tick 36s linear infinite}
-  .ticker i{color:var(--amber);font-style:normal;margin:0 1.6em}
-  @keyframes tick{to{transform:translateX(-50%)}}
+  .avatar{width:88px;height:88px;border-radius:8px;object-fit:cover;flex:none}
+  h1{font-size:26px;font-weight:600;letter-spacing:.01em}
+  .headline{color:var(--text-2);font-size:15px;margin-top:2px}
+  .contact{margin-top:8px;font-size:14px;color:var(--text-2);display:flex;flex-wrap:wrap;gap:6px 20px}
+  .contact span{display:inline-flex;align-items:center;gap:6px}
 
   /* ---------- sections ---------- */
-  section{padding:clamp(56px,10vh,104px) 0 8px}
-  .sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(30px,5vh,48px)}
-  .sec-head .no{
-    font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.2em;
+  section{padding-top:28px}
+  h2{
+    font-size:16px;font-weight:600;letter-spacing:.08em;
+    color:var(--text);margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
   }
-  .sec-head h2{
-    font-size:clamp(26px,4vw,38px);font-weight:400;letter-spacing:.02em;
-  }
-  .sec-head .rule{flex:1;height:1px;background:var(--line);transform-origin:left;transform:scaleX(0);animation:rule 1s .3s ease forwards}
-  @keyframes rule{to{transform:scaleX(1)}}
+  h2::before{content:"";width:4px;height:16px;background:var(--accent);border-radius:2px;flex:none}
+  ul.plain{list-style:none}
+  ul.plain li{padding-left:16px;position:relative;color:var(--text)}
+  ul.plain li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--text-3)}
+  ul.plain li+li{margin-top:6px}
 
-  /* interests */
-  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-  .tile{
-    border:1px solid var(--line);border-radius:4px;padding:26px 24px 22px;
-    background:linear-gradient(160deg,var(--ink-2),var(--ink));
-    position:relative;overflow:hidden;
-    transition:border-color .35s,transform .35s;
-  }
-  .tile:hover{border-color:rgba(217,164,65,.5);transform:translateY(-4px)}
-  .tile::after{
-    content:attr(data-k);position:absolute;right:14px;bottom:6px;
-    font-family:var(--mono);font-size:clamp(40px,6vw,64px);font-style:italic;
-    color:rgba(236,228,212,.05);line-height:1;transition:color .35s;
-  }
-  .tile:hover::after{color:rgba(217,164,65,.14)}
-  .tile h3{font-size:19px;font-weight:400;margin-bottom:10px;color:var(--paper)}
-  .tile h3 small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--amber);text-transform:uppercase;margin-bottom:12px}
-  .tile p{font-size:15px;color:var(--paper-dim);line-height:1.8}
-  .t1{grid-column:span 7}.t2{grid-column:span 5}
-  .t3{grid-column:span 5}.t4{grid-column:span 7}
+  /* skills */
+  .skills li{display:flex;gap:12px;padding:5px 0}
+  .skills .k{flex:none;width:88px;color:var(--text-2);font-size:14px}
+  .skills .v{color:var(--text)}
 
   /* projects */
-  .proj{
-    display:grid;grid-template-columns:56px 1fr auto;gap:8px 22px;align-items:baseline;
-    padding:24px 6px;border-bottom:1px solid var(--line);position:relative;
-    text-decoration:none;color:inherit;transition:padding .35s;
+  .proj{padding:14px 0;border-bottom:1px dashed var(--line)}
+  .proj:last-child{border-bottom:none;padding-bottom:2px}
+  .proj-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .proj-head .name{font-size:15.5px;font-weight:600}
+  .proj-head .stack{
+    font-size:12.5px;color:var(--text-3);
+    border:1px solid var(--line);border-radius:4px;padding:0 7px;
   }
-  .proj:first-of-type{border-top:1px solid var(--line)}
-  .proj .idx{font-family:var(--mono);font-size:12px;color:var(--paper-faint);letter-spacing:.1em}
-  .proj .name{
-    font-size:clamp(20px,2.6vw,26px);letter-spacing:.01em;
-    display:inline-flex;align-items:baseline;gap:14px;flex-wrap:wrap;
-  }
-  .proj .name .lang{
-    font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--paper-faint);
-    display:inline-flex;align-items:center;gap:7px;text-transform:uppercase;
-  }
-  .lang i{width:8px;height:8px;border-radius:50%;display:inline-block}
-  .proj .desc{grid-column:2/4;font-size:15px;color:var(--paper-dim);max-width:46em}
-  .proj .arrow{
-    grid-row:1/3;align-self:center;font-size:22px;color:var(--paper-faint);
-    font-family:var(--mono);transition:transform .35s,color .35s;
-  }
-  .proj::before{
-    content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;
-    background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .45s ease;
-  }
-  .proj:hover{padding-left:18px;padding-right:0}
-  .proj:hover::before{transform:scaleX(1)}
-  .proj:hover .arrow{transform:translateX(6px);color:var(--amber-bright)}
-  .proj:hover .name{color:var(--amber-bright)}
-
-  /* contact */
-  .biglink{
-    display:block;text-decoration:none;color:var(--paper);
-    font-size:clamp(30px,6vw,58px);font-style:italic;letter-spacing:-.01em;
-    padding:10px 0;transition:color .3s;
-  }
-  .biglink span{color:var(--paper-faint);font-family:var(--mono);font-style:normal;font-size:.38em;letter-spacing:.2em;margin-left:18px;vertical-align:middle}
-  .biglink:hover{color:var(--amber-bright)}
-  .contact-note{color:var(--paper-dim);font-size:15px;max-width:38em;margin-top:18px}
+  .proj-head .link{font-size:13px;margin-left:auto}
+  .proj p{color:var(--text-2);font-size:14.5px;margin-top:4px}
 
   footer{
-    margin-top:clamp(64px,12vh,120px);border-top:1px solid var(--line);
-    padding:26px 0 44px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
-    font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--paper-faint);
+    margin-top:36px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--text-3);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
   }
-  footer a{color:var(--paper-dim);text-decoration:none}
-  footer a:hover{color:var(--amber-bright)}
 
-  /* ---------- reveal ---------- */
-  .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
-  .rv.on{opacity:1;transform:none}
-  .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.3s}.d4{transition-delay:.42s}
-  .d5{transition-delay:.54s}.d6{transition-delay:.66s}.d7{transition-delay:.78s}.d8{transition-delay:.9s}
-  .hero,.hero *{animation:none}
-  header .topline,.hero h1,.hero .sub,.hero .meta,.avatar-box{
-    opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;
+  @media (max-width:560px){
+    header{flex-direction:column;align-items:flex-start;gap:16px}
+    .page{margin:16px 12px 40px}
+    .proj-head .link{margin-left:0}
+    .skills .k{width:76px}
   }
-  header .topline{animation-delay:.05s}
-  .hero h1{animation-delay:.15s}
-  .hero .sub{animation-delay:.3s}
-  .hero .meta{animation-delay:.45s}
-  .avatar-box{animation-delay:.55s}
-  @keyframes rise{to{opacity:1;transform:none}}
-
-  @media (prefers-reduced-motion:reduce){
-    *,*::before,*::after{animation:none!important;transition:none!important}
-    .rv{opacity:1;transform:none}
-    header .topline,.hero h1,.hero .sub,.hero .meta,.avatar-box{opacity:1;transform:none}
-  }
-  @media (max-width:760px){
-    .hero{grid-template-columns:1fr;align-items:start}
-    .avatar-box{order:-1;margin-bottom:8px}
-    .side-label{display:none}
-    .t1,.t2,.t3,.t4{grid-column:span 12}
-    .proj{grid-template-columns:1fr auto}
-    .proj .idx{display:none}
-    .proj .desc{grid-column:1/3}
+  @media print{
+    body{background:#fff}
+    .page{border:none;margin:0;max-width:100%;padding:0}
+    a{color:var(--text)}
   }
 </style>
 </head>
 <body>
-<div class="glow"></div>
-<div class="grain"></div>
+<div class="page">
 
-<div class="wrap">
   <header>
-    <div class="topline">
-      <span>akahello — index</span>
-      <a href="https://github.com/akahello" target="_blank" rel="noopener">github.com/akahello ↗</a>
-    </div>
-    <div class="hero">
-      <div>
-        <h1>akahello<span class="dot">.</span></h1>
-        <p class="sub">研究<em>机器遗忘</em>与<em>AI 安全</em>，也着迷于让智能体学会模仿与决策。在逆向工程噪声的世界里，寻找值得被记住与值得被遗忘的部分。</p>
-        <div class="meta">
-          <span><b>机器遗忘</b> Machine Unlearning</span>
-          <span><b>AI 安全</b> Security &amp; Privacy</span>
-          <span><b>强化学习</b> RL / IL</span>
-          <span><b>自 2021</b> · <b id="repon">100+</b> public repos</span>
-        </div>
-      </div>
-      <div class="avatar-box">
-        <img class="avatar" src="https://avatars.githubusercontent.com/u/89537521?v=4" alt="akahello 的头像" width="180" height="180">
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/89537521?v=4" alt="头像" width="88" height="88">
+    <div>
+      <h1>akahello</h1>
+      <p class="headline">机器学习研究者 · 机器遗忘 / AI 安全与隐私 / 强化与模仿学习</p>
+      <div class="contact">
+        <span>GitHub：<a href="https://github.com/akahello" target="_blank" rel="noopener">github.com/akahello</a></span>
+        <span>主页：<a href="https://akahello.github.io" target="_blank" rel="noopener">akahello.github.io</a></span>
+        <!-- 需要展示邮箱时，把下面一行取消注释并替换地址
+        <span>邮箱：<a href="mailto:you@example.com">you@example.com</a></span>
+        -->
       </div>
     </div>
-    <div class="side-label">RESEARCH · CODE · NOTES</div>
-    <div class="ticker" aria-hidden="true"><span>
-      machine unlearning<i>◆</i>membership inference<i>◆</i>backdoor &amp; defense<i>◆</i>differential privacy<i>◆</i>imitation learning<i>◆</i>deep RL<i>◆</i>adversarial examples<i>◆</i>LLM agents<i>◆</i>anomaly detection<i>◆</i>
-      machine unlearning<i>◆</i>membership inference<i>◆</i>backdoor &amp; defense<i>◆</i>differential privacy<i>◆</i>imitation learning<i>◆</i>deep RL<i>◆</i>adversarial examples<i>◆</i>LLM agents<i>◆</i>anomaly detection<i>◆</i>
-    </span></div>
   </header>
 
   <section id="interests">
-    <div class="sec-head"><span class="no">01</span><h2>研究方向</h2><span class="rule"></span></div>
-    <div class="grid">
-      <div class="tile t1 rv d1" data-k="U">
-        <h3><small>Unlearning</small>机器遗忘</h3>
-        <p>如何在已训练的模型中「抹去」特定数据的影响 —— WGAN 驱动的遗忘、遗忘攻击与遗忘效果的度量，关注隐私合规与模型可信。</p>
-      </div>
-      <div class="tile t2 rv d2" data-k="S">
-        <h3><small>Security</small>AI 安全与隐私</h3>
-        <p>后门攻防、成员推断、对抗样本与差分隐私：从 BackdoorBench 到 cleverhans，系统性地审视机器学习的攻击面。</p>
-      </div>
-      <div class="tile t3 rv d3" data-k="R">
-        <h3><small>RL / IL</small>强化与模仿学习</h3>
-        <p>GAIL、PPO、A2C 与最小化实现 —— 让智能体从演示与交互中习得策略，覆盖调度、驾驶与博弈环境。</p>
-      </div>
-      <div class="tile t4 rv d4" data-k="L">
-        <h3><small>LLM &amp; Agents</small>大模型与智能体</h3>
-        <p>从零训练小型 GPT、视觉-语言-动作模型，到把 LLM 变成科研与工程生产力：AI Scientist、Claude Code 生态与个人技能库。</p>
-      </div>
-    </div>
+    <h2>研究方向</h2>
+    <ul class="plain">
+      <li><b>机器遗忘（Machine Unlearning）</b>：如何在已训练模型中移除特定数据的影响，包括基于 WGAN 的遗忘方法与遗忘效果评估。</li>
+      <li><b>AI 安全与隐私</b>：后门攻防、成员推断、对抗样本、差分隐私。</li>
+      <li><b>强化与模仿学习</b>：PPO / A2C / GAIL 等算法在调度、驾驶等环境中的实现与研究。</li>
+      <li><b>大模型与智能体</b>：小型 GPT 从零训练、LLM 辅助科研与工程工具链。</li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2>专业技能</h2>
+    <ul class="plain skills">
+      <li><span class="k">编程语言</span><span class="v">Python（主力）、JavaScript、C++、LaTeX</span></li>
+      <li><span class="k">框架工具</span><span class="v">PyTorch、OpenAI Gym / HighwayEnv、Git、Linux</span></li>
+      <li><span class="k">研究方向</span><span class="v">机器遗忘、后门攻防（BackdoorBench / BackdoorBox）、差分隐私、深度强化学习</span></li>
+    </ul>
   </section>
 
   <section id="projects">
-    <div class="sec-head"><span class="no">02</span><h2>selected works</h2><span class="rule"></span></div>
-    <div>
-      <a class="proj rv d1" href="https://github.com/akahello/GAIL" target="_blank" rel="noopener">
-        <span class="idx">01</span>
-        <span class="name">GAIL <span class="lang"><i style="background:#3572A5"></i>Python</span></span>
-        <span class="arrow">→</span>
-        <span class="desc">生成对抗模仿学习（Generative Adversarial Imitation Learning）的实现与研究。</span>
-      </a>
-      <a class="proj rv d2" href="https://github.com/akahello/DRL_IL_ADV" target="_blank" rel="noopener">
-        <span class="idx">02</span>
-        <span class="name">DRL_IL_ADV <span class="lang"><i style="background:#999"></i>Multi</span></span>
-        <span class="arrow">→</span>
-        <span class="desc">深度强化学习算法集合：PPO、A2C、模仿学习与对抗样本的统一实验框架。</span>
-      </a>
-      <a class="proj rv d3" href="https://github.com/akahello/wgan-unlearn" target="_blank" rel="noopener">
-        <span class="idx">03</span>
-        <span class="name">wgan-unlearn <span class="lang"><i style="background:#3572A5"></i>Python</span></span>
-        <span class="arrow">→</span>
-        <span class="desc">基于 WGAN 的机器遗忘方法探索：用生成模型辅助遗忘特定样本的痕迹。</span>
-      </a>
-      <a class="proj rv d4" href="https://github.com/akahello/AD" target="_blank" rel="noopener">
-        <span class="idx">04</span>
-        <span class="name">AD <span class="lang"><i style="background:#3572A5"></i>Python</span></span>
-        <span class="arrow">→</span>
-        <span class="desc">异常检测（Anomaly Detection）实验仓库。</span>
-      </a>
-      <a class="proj rv d5" href="https://github.com/akahello/patent-disclosure-skill" target="_blank" rel="noopener">
-        <span class="idx">05</span>
-        <span class="name">patent-disclosure-skill <span class="lang"><i style="background:#3572A5"></i>Python</span></span>
-        <span class="arrow">→</span>
-        <span class="desc">中国专利技能：专利点挖掘、发明交底书编写、政策动向嗅探与审查意见辅助答复。</span>
-      </a>
-      <a class="proj rv d6" href="https://github.com/akahello/academic_paper_page" target="_blank" rel="noopener">
-        <span class="idx">06</span>
-        <span class="name">academic_paper_page <span class="lang"><i style="background:#f1e05a"></i>JavaScript</span></span>
-        <span class="arrow">→</span>
-        <span class="desc">学术论文展示页面：为研究工作生成可分享的单页主页。</span>
-      </a>
-    </div>
-  </section>
+    <h2>项目经历</h2>
 
-  <section id="contact">
-    <div class="sec-head"><span class="no">03</span><h2>联系</h2><span class="rule"></span></div>
-    <div class="rv d1">
-      <a class="biglink" href="https://github.com/akahello" target="_blank" rel="noopener">github.com/akahello<span>↗</span></a>
-      <p class="contact-note">欢迎通过 GitHub Issue 或邮件交流机器遗忘、AI 安全与强化学习相关的话题。这个页面由 <a href="https://pages.github.com" target="_blank" rel="noopener" style="color:var(--amber-bright)">GitHub Pages</a> 托管，源码即 <a href="https://github.com/akahello/akahello.github.io" target="_blank" rel="noopener" style="color:var(--amber-bright)">akahello/akahello.github.io</a> 仓库。</p>
+    <div class="proj">
+      <div class="proj-head">
+        <span class="name">GAIL — 生成对抗模仿学习</span>
+        <span class="stack">Python · PyTorch</span>
+        <a class="link" href="https://github.com/akahello/GAIL" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p>实现生成对抗模仿学习（Generative Adversarial Imitation Learning），从专家演示中学习策略。</p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="name">DRL_IL_ADV — 深度强化学习算法集合</span>
+        <span class="stack">Python</span>
+        <a class="link" href="https://github.com/akahello/DRL_IL_ADV" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p>PPO、A2C 等深度强化学习算法与模仿学习、对抗样本实验的统一框架。</p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="name">wgan-unlearn — 基于 WGAN 的机器遗忘</span>
+        <span class="stack">Python · PyTorch</span>
+        <a class="link" href="https://github.com/akahello/wgan-unlearn" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p>探索利用生成对抗网络辅助遗忘特定样本在模型中的痕迹。</p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="name">AD — 异常检测</span>
+        <span class="stack">Python</span>
+        <a class="link" href="https://github.com/akahello/AD" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p>异常检测（Anomaly Detection）方法实验。</p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="name">patent-disclosure-skill — 专利交底书技能</span>
+        <span class="stack">Python · LLM</span>
+        <a class="link" href="https://github.com/akahello/patent-disclosure-skill" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p>基于 LLM 的中国专利辅助工具：专利点挖掘、发明交底书编写、政策动向分析与审查意见答复。</p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="name">academic_paper_page — 学术论文主页</span>
+        <span class="stack">JavaScript</span>
+        <a class="link" href="https://github.com/akahello/academic_paper_page" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p>为学术论文生成可分享的单页展示站点。</p>
     </div>
   </section>
 
   <footer>
-    <span>© <span id="yr"></span> akahello — set in Didot &amp; Songti</span>
-    <span><a href="#interests">研究方向</a> · <a href="#projects">作品</a> · <a href="#contact">联系</a></span>
+    <span>© <span id="yr"></span> akahello</span>
+    <span>由 GitHub Pages 托管 · <a href="https://github.com/akahello/akahello.github.io" target="_blank" rel="noopener">查看源码</a></span>
   </footer>
-</div>
 
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  document.getElementById('repon').textContent = '100+';
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-  },{threshold:.12});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
-</script>
+</div>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
