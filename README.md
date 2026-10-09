@@ -2,18 +2,18 @@
 
 线上地址：<https://akahello.github.io>
 
-基于 [modern-resume-theme](https://github.com/sproogen/modern-resume-theme)（Jekyll），由 GitHub Pages 自动构建。
+单文件静态页面（`index.html`），由 GitHub Pages 托管，无任何依赖。
 
 ## 如何修改内容
 
-所有内容都在 [`_config.yml`](_config.yml) 中：
+- 文字内容：编辑 `index.html`，各区块都有清晰的 HTML 结构和中文注释位置
+- 头像：替换 `images/profile.jpg`
+- 打开本地预览：直接双击 `index.html` 即可
 
-- `name` / `title` / `about_content` — 姓名、头衔、自我介绍
-- `content:` — 各区块（研究方向 / 项目经历 / 专业技能）
-- `images/profile.jpg` — 头像（直接替换图片文件）
-
-改完后提交推送即可，约 1 分钟后生效：
+改完后提交推送，约 1 分钟后生效：
 
 ```bash
 git add -A && git commit -m "update" && git push
 ```
+
+页面自带「打印 / PDF」按钮（浏览器打印对话框里选择「存储为 PDF」）。
