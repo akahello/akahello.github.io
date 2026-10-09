@@ -10,6 +10,23 @@
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a5f'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='36' fill='%23c9a24b' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
 <style>
+  /* ---------- self-hosted display serif (latin subset) ---------- */
+  @font-face{
+    font-family:"Playfair Display";
+    src:url("fonts/playfair-400.woff2") format("woff2");
+    font-weight:400;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:"Playfair Display";
+    src:url("fonts/playfair-600.woff2") format("woff2");
+    font-weight:600;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:"Playfair Display";
+    src:url("fonts/playfair-italic.woff2") format("woff2");
+    font-weight:400;font-style:italic;font-display:swap;
+  }
+
   :root{
     --navy:#1e3a5f;
     --navy-deep:#16293f;
@@ -22,7 +39,8 @@
     --line:#e4e9ef;
     --soft:#f7f9fb;
     --bg:#eef1f5;
-    --serif:"Songti SC","Noto Serif CJK SC","STSong",Georgia,"Times New Roman",serif;
+    --display:"Playfair Display",Georgia,"Songti SC","Noto Serif CJK SC","STSong",serif;
+    --serif:"Songti SC","Noto Serif CJK SC","STSong",Georgia,serif;
     --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -39,6 +57,8 @@
   }
   a{color:var(--navy);text-decoration:none;transition:color .2s}
   a:hover{color:var(--gold)}
+  ::selection{background:var(--gold-soft);color:#fff}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px;border-radius:4px}
 
   .sheet{
     max-width:1000px;margin:0 auto;background:#fff;
@@ -51,8 +71,11 @@
 
   /* ---------- header ---------- */
   header{
-    padding:44px 52px 34px;
-    background:linear-gradient(180deg,#fbfcfe,#fff);
+    position:relative;
+    padding:46px 52px 36px;
+    background:
+      repeating-linear-gradient(135deg,rgba(30,58,95,.028) 0 1px,transparent 1px 14px),
+      linear-gradient(180deg,#fbfcfe,#fff);
     display:flex;gap:30px;align-items:center;
   }
   .avatar-wrap{position:relative;flex:none}
@@ -67,14 +90,14 @@
     pointer-events:none;
   }
   .id h1{
-    font-family:var(--serif);
-    font-size:34px;font-weight:700;color:var(--navy-deep);
-    letter-spacing:.02em;line-height:1.2;
+    font-family:var(--display);
+    font-size:38px;font-weight:600;color:var(--navy-deep);
+    letter-spacing:.015em;line-height:1.15;
   }
   .id .en{
-    font-family:Georgia,serif;font-style:italic;font-size:14px;
-    color:var(--gold);letter-spacing:.24em;text-transform:uppercase;
-    margin-top:2px;
+    font-family:var(--display);font-style:italic;font-size:14px;
+    color:var(--gold);letter-spacing:.28em;text-transform:uppercase;
+    margin-top:3px;
   }
   .id .headline{margin-top:10px;font-size:15.5px;color:var(--text)}
   .id .headline b{color:var(--navy);font-weight:600}
@@ -83,12 +106,21 @@
     display:inline-flex;align-items:center;gap:7px;
     font-size:13px;color:var(--muted);
     background:var(--soft);border:1px solid var(--line);
-    border-radius:999px;padding:5px 13px;cursor:pointer;
-    font-family:var(--sans);
-    transition:border-color .2s,color .2s;
+    border-radius:999px;padding:5px 13px;
+    transition:border-color .2s,color .2s,transform .2s;
   }
   .chip svg{width:13px;height:13px;flex:none}
   .chip:hover{border-color:var(--gold-soft);color:var(--navy)}
+  .print-fab{
+    position:absolute;top:20px;right:22px;
+    width:36px;height:36px;border-radius:50%;
+    background:var(--soft);border:1px solid var(--line);
+    color:var(--muted);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s,color .2s,transform .2s;
+  }
+  .print-fab svg{width:15px;height:15px}
+  .print-fab:hover{border-color:var(--gold-soft);color:var(--gold);transform:rotate(-6deg) scale(1.06)}
   .double-rule{
     height:5px;margin:0 52px;
     border-top:2px solid var(--navy);border-bottom:1px solid var(--gold-soft);
@@ -97,7 +129,17 @@
   /* ---------- columns ---------- */
   .cols{display:grid;grid-template-columns:1fr 296px;gap:0}
   .main{padding:38px 44px 44px 52px;border-right:1px solid var(--line)}
-  .side{padding:38px 40px 44px 36px;background:linear-gradient(180deg,#fafbfd,#f7f9fb)}
+  .side{padding:34px 32px;background:linear-gradient(180deg,#fafbfd,#f5f7fa)}
+
+  /* stagger reveal */
+  .main section{animation:rise .55s ease both}
+  .main section:nth-of-type(1){animation-delay:.15s}
+  .main section:nth-of-type(2){animation-delay:.28s}
+  .side .box{animation:rise .55s ease both}
+  .side .box:nth-of-type(1){animation-delay:.24s}
+  .side .box:nth-of-type(2){animation-delay:.36s}
+  .side .box:nth-of-type(3){animation-delay:.48s}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
   /* section titles */
   h2{
@@ -109,12 +151,13 @@
     color:var(--gold-soft);
   }
   h2 .en{
-    font-family:Georgia,serif;font-style:italic;font-weight:400;
+    font-family:var(--display);font-style:italic;font-weight:400;
     font-size:11.5px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;
+    white-space:nowrap;
   }
+  h2 .sec-rule{flex:1;height:1px;background:var(--line);align-self:center;min-width:24px}
   h2 .num{
-    font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--faint);
-    margin-left:auto;
+    font-family:var(--display);font-size:13px;font-style:italic;color:var(--faint);
   }
   section+section{margin-top:40px}
 
@@ -123,9 +166,11 @@
   .interest .mark{
     width:7px;height:7px;border-radius:2px;transform:rotate(45deg);
     background:var(--gold-soft);margin-top:9px;justify-self:center;
+    transition:transform .25s;
   }
+  .interest:hover .mark{transform:rotate(225deg) scale(1.15)}
   .interest b{font-family:var(--serif);font-size:15.5px;color:var(--navy-deep);font-weight:700}
-  .interest span.en-key{font-size:12px;color:var(--faint);font-style:italic;font-family:Georgia,serif;margin-left:6px}
+  .interest span.en-key{font-size:12px;color:var(--faint);font-style:italic;font-family:var(--display);margin-left:6px}
   .interest p{font-size:14.5px;color:var(--muted);margin-top:1px}
 
   /* timeline projects */
@@ -141,7 +186,9 @@
     width:11px;height:11px;border-radius:50%;
     background:#fff;border:2.5px solid var(--gold-soft);
     box-shadow:0 0 0 3px #fff;
+    transition:background .25s,transform .25s;
   }
+  .tl-item:hover::before{background:var(--gold-soft);transform:scale(1.18)}
   .tl-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .tl-head .name{
     font-family:var(--serif);font-size:16.5px;font-weight:700;color:var(--navy-deep);
@@ -167,32 +214,37 @@
   }
   .tl-head .link:hover{color:var(--gold)}
   .tl-item .quote{
-    font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--gold);
+    font-family:var(--display);font-style:italic;font-size:13px;color:var(--gold);
     margin-top:2px;
   }
   .tl-item p{font-size:14.5px;color:var(--muted);margin-top:2px;max-width:46em}
 
-  /* ---------- sidebar ---------- */
-  .box{margin-bottom:34px}
+  /* ---------- sidebar cards ---------- */
+  .box{
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:20px 18px 18px;
+    box-shadow:0 1px 2px rgba(22,41,63,.04);
+  }
+  .box+.box{margin-top:16px}
   .box h3{
-    font-family:var(--serif);font-size:15.5px;font-weight:700;color:var(--navy-deep);
-    padding-bottom:10px;margin-bottom:16px;position:relative;
+    font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy-deep);
+    padding-bottom:9px;margin-bottom:14px;position:relative;
   }
   .box h3::after{
     content:"";position:absolute;left:0;bottom:0;width:34px;height:2px;background:var(--gold-soft);
   }
-  .skill-group+.skill-group{margin-top:16px}
+  .skill-group+.skill-group{margin-top:15px}
   .skill-group .k{
     font-size:12px;letter-spacing:.14em;color:var(--faint);margin-bottom:8px;
   }
   .tags{display:flex;flex-wrap:wrap;gap:7px}
   .tag{
     font-size:12.5px;color:var(--text);
-    background:#fff;border:1px solid var(--line);border-radius:999px;
+    background:var(--soft);border:1px solid var(--line);border-radius:999px;
     padding:3.5px 12px;
-    transition:border-color .2s,transform .2s;
+    transition:border-color .2s,transform .2s,color .2s;
   }
-  .tag:hover{border-color:var(--gold-soft);transform:translateY(-1px)}
+  .tag:hover{border-color:var(--gold-soft);color:var(--navy);transform:translateY(-1px)}
 
   /* language bar */
   .langbar{
@@ -200,7 +252,8 @@
     background:var(--soft);border:1px solid var(--line);
     margin:4px 0 10px;
   }
-  .langbar span{height:100%}
+  .langbar span{height:100%;transform-origin:left;animation:grow .9s .4s ease both}
+  @keyframes grow{from{transform:scaleX(0)}}
   .lang-legend{display:flex;flex-wrap:wrap;gap:6px 14px}
   .lang-legend span{
     display:inline-flex;align-items:center;gap:6px;
@@ -215,7 +268,7 @@
     padding:8px 10px;border-radius:8px;
     transition:background .2s;
   }
-  .side-links a:hover{background:#fff;text-decoration:none}
+  .side-links a:hover{background:var(--soft);text-decoration:none}
   .side-links svg{width:15px;height:15px;color:var(--gold);flex:none}
   .side-links .arr{margin-left:auto;color:var(--faint)}
 
@@ -225,6 +278,7 @@
     padding:18px 52px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     font-size:12.5px;color:var(--faint);
   }
+  footer .dia{color:var(--gold-soft);margin:0 8px;font-size:9px;vertical-align:1px}
   footer a{color:var(--muted)}
   footer a:hover{color:var(--gold)}
 
@@ -232,21 +286,22 @@
     *{animation:none!important;transition:none!important}
   }
   @media (max-width:820px){
-    header{padding:36px 28px 28px;gap:22px}
+    header{padding:38px 28px 30px;gap:22px}
+    .print-fab{top:16px;right:18px}
     .double-rule{margin:0 28px}
     .cols{grid-template-columns:1fr}
     .main{border-right:none;padding:32px 28px;border-bottom:1px solid var(--line)}
-    .side{padding:32px 28px}
+    .side{padding:26px 24px 30px}
     footer{padding:16px 28px}
   }
   @media (max-width:520px){
-    header{flex-direction:column;align-items:flex-start}
+    header{flex-direction:column;align-items:flex-start;padding-top:60px}
     .avatar{width:92px;height:92px}
   }
   @media print{
     body{background:#fff;padding:0}
     .sheet{border:none;box-shadow:none;border-radius:0;max-width:100%}
-    .tl-item .link,.no-print{display:none}
+    .tl-item .link,.print-fab{display:none}
     a{color:var(--text)}
   }
 </style>
@@ -256,6 +311,9 @@
 <div class="sheet">
 
   <header>
+    <button class="print-fab" onclick="window.print()" title="打印 / 保存为 PDF" aria-label="打印或保存为 PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg>
+    </button>
     <div class="avatar-wrap">
       <img class="avatar" src="images/profile.jpg" alt="头像" width="104" height="104">
     </div>
@@ -272,10 +330,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           akahello.github.io
         </a>
-        <button class="chip no-print" onclick="window.print()" title="打印或保存为 PDF">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg>
-          打印 / PDF
-        </button>
         <!-- 需要展示邮箱时，取消下面这段注释并替换地址
         <a class="chip" href="mailto:you@example.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
@@ -294,7 +348,7 @@
       <section id="interests">
         <h2>
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5z"/></svg>
-          研究方向 <span class="en">Research Interests</span><span class="num">01</span>
+          研究方向 <span class="en">Research Interests</span><span class="sec-rule"></span><span class="num">01</span>
         </h2>
         <div class="interest">
           <span class="mark"></span>
@@ -317,7 +371,7 @@
       <section id="projects">
         <h2>
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/></svg>
-          项目经历 <span class="en">Selected Projects</span><span class="num">02</span>
+          项目经历 <span class="en">Selected Projects</span><span class="sec-rule"></span><span class="num">02</span>
         </h2>
         <div class="tl">
 
@@ -440,7 +494,7 @@
   </div>
 
   <footer>
-    <span>© <span id="yr"></span> akahello · 最后更新 2026 年 10 月</span>
+    <span>© <span id="yr"></span> akahello<span class="dia">◆</span>最后更新 2026 年 10 月</span>
     <span><a href="https://github.com/akahello/akahello.github.io" target="_blank" rel="noopener">查看源码</a></span>
   </footer>
 
