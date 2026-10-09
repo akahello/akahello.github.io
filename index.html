@@ -8,198 +8,390 @@
 <meta property="og:title" content="akahello · 个人简历">
 <meta property="og:description" content="机器遗忘 · AI 安全与隐私 · 强化与模仿学习">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ffffff'/%3E%3Crect width='64' height='64' rx='12' fill='none' stroke='%232456c4' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' fill='%232456c4' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a5f'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='36' fill='%23c9a24b' text-anchor='middle'%3Ea%3C/text%3E%3C/svg%3E">
 <style>
   :root{
-    --text:#1f2328;
-    --text-2:#57606a;
-    --text-3:#8b949e;
-    --line:#e4e7eb;
-    --accent:#2456c4;
-    --bg:#ffffff;
-    --bg-soft:#f6f8fa;
+    --navy:#1e3a5f;
+    --navy-deep:#16293f;
+    --gold:#b98a2f;
+    --gold-soft:#c9a24b;
+    --gold-pale:#f6efdd;
+    --text:#2e3945;
+    --muted:#68737f;
+    --faint:#98a2ad;
+    --line:#e4e9ef;
+    --soft:#f7f9fb;
+    --bg:#eef1f5;
+    --serif:"Songti SC","Noto Serif CJK SC","STSong",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
-    background:var(--bg-soft);
+    background:
+      radial-gradient(60rem 24rem at 50% -6rem,rgba(30,58,95,.06),transparent 70%),
+      var(--bg);
     color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
-    font-size:15px;
-    line-height:1.75;
+    font-family:var(--sans);
+    font-size:15px;line-height:1.75;
     -webkit-font-smoothing:antialiased;
+    padding:40px 16px 72px;
   }
-  .page{
-    max-width:860px;
-    margin:32px auto 64px;
-    background:var(--bg);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:clamp(28px,6vw,56px) clamp(24px,6vw,56px);
+  a{color:var(--navy);text-decoration:none;transition:color .2s}
+  a:hover{color:var(--gold)}
+
+  .sheet{
+    max-width:1000px;margin:0 auto;background:#fff;
+    border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 1px 2px rgba(22,41,63,.04),0 12px 40px -12px rgba(22,41,63,.14);
+    overflow:hidden;
+    animation:fade .6s ease both;
   }
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
   /* ---------- header ---------- */
   header{
-    display:flex;gap:24px;align-items:center;
-    padding-bottom:24px;border-bottom:1px solid var(--line);
+    padding:44px 52px 34px;
+    background:linear-gradient(180deg,#fbfcfe, #fff);
+    display:flex;gap:30px;align-items:center;
   }
-  .avatar{width:88px;height:88px;border-radius:8px;object-fit:cover;flex:none}
-  h1{font-size:26px;font-weight:600;letter-spacing:.01em}
-  .headline{color:var(--text-2);font-size:15px;margin-top:2px}
-  .contact{margin-top:8px;font-size:14px;color:var(--text-2);display:flex;flex-wrap:wrap;gap:6px 20px}
-  .contact span{display:inline-flex;align-items:center;gap:6px}
+  .avatar-wrap{position:relative;flex:none}
+  .avatar{
+    width:104px;height:104px;border-radius:18px;object-fit:cover;display:block;
+    border:1px solid var(--line);
+    box-shadow:0 10px 24px -10px rgba(22,41,63,.3);
+  }
+  .avatar-wrap::after{
+    content:"";position:absolute;inset:-7px;
+    border:1px solid var(--gold-soft);border-radius:22px;
+    pointer-events:none;
+  }
+  .id h1{
+    font-family:var(--serif);
+    font-size:34px;font-weight:700;color:var(--navy-deep);
+    letter-spacing:.02em;line-height:1.2;
+  }
+  .id .en{
+    font-family:Georgia,serif;font-style:italic;font-size:14px;
+    color:var(--gold);letter-spacing:.24em;text-transform:uppercase;
+    margin-top:2px;
+  }
+  .id .headline{margin-top:10px;font-size:15.5px;color:var(--text)}
+  .id .headline b{color:var(--navy);font-weight:600}
+  .contact{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px 10px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:13px;color:var(--muted);
+    background:var(--soft);border:1px solid var(--line);
+    border-radius:999px;padding:5px 13px;
+    transition:border-color .2s,color .2s;
+  }
+  .chip svg{width:13px;height:13px;flex:none}
+  .chip:hover{border-color:var(--gold-soft);color:var(--navy)}
+  .double-rule{
+    height:5px;margin:0 52px;
+    border-top:2px solid var(--navy);border-bottom:1px solid var(--gold-soft);
+  }
 
-  /* ---------- sections ---------- */
-  section{padding-top:28px}
+  /* ---------- columns ---------- */
+  .cols{display:grid;grid-template-columns:1fr 296px;gap:0}
+  .main{padding:38px 44px 44px 52px;border-right:1px solid var(--line)}
+  .side{padding:38px 40px 44px 36px;background:linear-gradient(180deg,#fafbfd,#f7f9fb)}
+
+  /* section titles */
   h2{
-    font-size:16px;font-weight:600;letter-spacing:.08em;
-    color:var(--text);margin-bottom:14px;
+    font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy-deep);
+    display:flex;align-items:baseline;gap:12px;margin-bottom:20px;
+  }
+  h2 .en{
+    font-family:Georgia,serif;font-style:italic;font-weight:400;
+    font-size:11.5px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;
+  }
+  h2 .num{
+    font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--faint);
+    margin-left:auto;
+  }
+  section+section{margin-top:40px}
+
+  /* interests */
+  .interest{display:grid;grid-template-columns:16px 1fr;gap:12px;padding:9px 0}
+  .interest .mark{
+    width:7px;height:7px;border-radius:2px;transform:rotate(45deg);
+    background:var(--gold-soft);margin-top:9px;justify-self:center;
+  }
+  .interest b{font-family:var(--serif);font-size:15.5px;color:var(--navy-deep);font-weight:700}
+  .interest span.en-key{font-size:12px;color:var(--faint);font-style:italic;font-family:Georgia,serif;margin-left:6px}
+  .interest p{font-size:14.5px;color:var(--muted);margin-top:1px}
+
+  /* timeline projects */
+  .tl{position:relative;padding-left:26px}
+  .tl::before{
+    content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;
+    background:linear-gradient(var(--gold-soft),var(--line));
+  }
+  .tl-item{position:relative;padding-bottom:26px}
+  .tl-item:last-child{padding-bottom:2px}
+  .tl-item::before{
+    content:"";position:absolute;left:-26px;top:7px;
+    width:11px;height:11px;border-radius:50%;
+    background:#fff;border:2.5px solid var(--gold-soft);
+    box-shadow:0 0 0 3px #fff;
+  }
+  .tl-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tl-head .name{
+    font-family:var(--serif);font-size:16.5px;font-weight:700;color:var(--navy-deep);
+  }
+  .pill{
+    font-size:11.5px;letter-spacing:.04em;color:var(--navy);
+    background:var(--soft);border:1px solid var(--line);
+    border-radius:4px;padding:1px 8px;
+  }
+  .pill.gold{color:var(--gold);border-color:#eadfc2;background:var(--gold-pale)}
+  .tl-head .link{
+    margin-left:auto;font-size:12.5px;color:var(--faint);
+    display:inline-flex;align-items:center;gap:4px;
+  }
+  .tl-head .link:hover{color:var(--gold)}
+  .tl-item p{font-size:14.5px;color:var(--muted);margin-top:3px;max-width:46em}
+
+  /* ---------- sidebar ---------- */
+  .box{margin-bottom:34px}
+  .box h3{
+    font-family:var(--serif);font-size:15.5px;font-weight:700;color:var(--navy-deep);
+    padding-bottom:10px;margin-bottom:16px;position:relative;
+  }
+  .box h3::after{
+    content:"";position:absolute;left:0;bottom:0;width:34px;height:2px;background:var(--gold-soft);
+  }
+  .skill-group+.skill-group{margin-top:16px}
+  .skill-group .k{
+    font-size:12px;letter-spacing:.14em;color:var(--faint);margin-bottom:8px;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{
+    font-size:12.5px;color:var(--text);
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:3.5px 12px;
+    transition:border-color .2s,transform .2s;
+  }
+  .tag:hover{border-color:var(--gold-soft);transform:translateY(-1px)}
+
+  .stat{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .stat:last-child{border-bottom:none}
+  .stat b{font-family:Georgia,serif;font-size:20px;color:var(--navy);font-weight:600;min-width:64px}
+  .stat span{font-size:13px;color:var(--muted)}
+
+  .side-links a{
     display:flex;align-items:center;gap:10px;
+    font-size:13.5px;color:var(--text);
+    padding:8px 10px;border-radius:8px;
+    transition:background .2s;
   }
-  h2::before{content:"";width:4px;height:16px;background:var(--accent);border-radius:2px;flex:none}
-  ul.plain{list-style:none}
-  ul.plain li{padding-left:16px;position:relative;color:var(--text)}
-  ul.plain li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--text-3)}
-  ul.plain li+li{margin-top:6px}
+  .side-links a:hover{background:#fff;text-decoration:none}
+  .side-links svg{width:15px;height:15px;color:var(--gold);flex:none}
+  .side-links .arr{margin-left:auto;color:var(--faint)}
 
-  /* skills */
-  .skills li{display:flex;gap:12px;padding:5px 0}
-  .skills .k{flex:none;width:88px;color:var(--text-2);font-size:14px}
-  .skills .v{color:var(--text)}
-
-  /* projects */
-  .proj{padding:14px 0;border-bottom:1px dashed var(--line)}
-  .proj:last-child{border-bottom:none;padding-bottom:2px}
-  .proj-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .proj-head .name{font-size:15.5px;font-weight:600}
-  .proj-head .stack{
-    font-size:12.5px;color:var(--text-3);
-    border:1px solid var(--line);border-radius:4px;padding:0 7px;
-  }
-  .proj-head .link{font-size:13px;margin-left:auto}
-  .proj p{color:var(--text-2);font-size:14.5px;margin-top:4px}
-
+  /* ---------- footer ---------- */
   footer{
-    margin-top:36px;padding-top:16px;border-top:1px solid var(--line);
-    font-size:13px;color:var(--text-3);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    border-top:1px solid var(--line);
+    padding:18px 52px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--faint);
   }
+  footer a{color:var(--muted)}
+  footer a:hover{color:var(--gold)}
 
-  @media (max-width:560px){
-    header{flex-direction:column;align-items:flex-start;gap:16px}
-    .page{margin:16px 12px 40px}
-    .proj-head .link{margin-left:0}
-    .skills .k{width:76px}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+  @media (max-width:820px){
+    header{padding:36px 28px 28px;gap:22px}
+    .double-rule{margin:0 28px}
+    .cols{grid-template-columns:1fr}
+    .main{border-right:none;padding:32px 28px;border-bottom:1px solid var(--line)}
+    .side{padding:32px 28px}
+    footer{padding:16px 28px}
+  }
+  @media (max-width:520px){
+    header{flex-direction:column;align-items:flex-start}
+    .avatar{width:92px;height:92px}
   }
   @media print{
-    body{background:#fff}
-    .page{border:none;margin:0;max-width:100%;padding:0}
+    body{background:#fff;padding:0}
+    .sheet{border:none;box-shadow:none;border-radius:0;max-width:100%}
+    .tl-item .link{display:none}
     a{color:var(--text)}
   }
 </style>
 </head>
 <body>
-<div class="page">
+
+<div class="sheet">
 
   <header>
-    <img class="avatar" src="https://avatars.githubusercontent.com/u/89537521?v=4" alt="头像" width="88" height="88">
-    <div>
+    <div class="avatar-wrap">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/89537521?v=4" alt="头像" width="104" height="104">
+    </div>
+    <div class="id">
       <h1>akahello</h1>
-      <p class="headline">机器学习研究者 · 机器遗忘 / AI 安全与隐私 / 强化与模仿学习</p>
+      <div class="en">Curriculum Vitae</div>
+      <p class="headline">机器学习研究者 · <b>机器遗忘</b> / <b>AI 安全与隐私</b> / <b>强化与模仿学习</b></p>
       <div class="contact">
-        <span>GitHub：<a href="https://github.com/akahello" target="_blank" rel="noopener">github.com/akahello</a></span>
-        <span>主页：<a href="https://akahello.github.io" target="_blank" rel="noopener">akahello.github.io</a></span>
-        <!-- 需要展示邮箱时，把下面一行取消注释并替换地址
-        <span>邮箱：<a href="mailto:you@example.com">you@example.com</a></span>
+        <a class="chip" href="https://github.com/akahello" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          github.com/akahello
+        </a>
+        <a class="chip" href="https://akahello.github.io" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          akahello.github.io
+        </a>
+        <!-- 需要展示邮箱时，取消下面这段注释并替换地址
+        <a class="chip" href="mailto:you@example.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          you@example.com
+        </a>
         -->
       </div>
     </div>
   </header>
 
-  <section id="interests">
-    <h2>研究方向</h2>
-    <ul class="plain">
-      <li><b>机器遗忘（Machine Unlearning）</b>：如何在已训练模型中移除特定数据的影响，包括基于 WGAN 的遗忘方法与遗忘效果评估。</li>
-      <li><b>AI 安全与隐私</b>：后门攻防、成员推断、对抗样本、差分隐私。</li>
-      <li><b>强化与模仿学习</b>：PPO / A2C / GAIL 等算法在调度、驾驶等环境中的实现与研究。</li>
-      <li><b>大模型与智能体</b>：小型 GPT 从零训练、LLM 辅助科研与工程工具链。</li>
-    </ul>
-  </section>
+  <div class="double-rule"></div>
 
-  <section id="skills">
-    <h2>专业技能</h2>
-    <ul class="plain skills">
-      <li><span class="k">编程语言</span><span class="v">Python（主力）、JavaScript、C++、LaTeX</span></li>
-      <li><span class="k">框架工具</span><span class="v">PyTorch、OpenAI Gym / HighwayEnv、Git、Linux</span></li>
-      <li><span class="k">研究方向</span><span class="v">机器遗忘、后门攻防（BackdoorBench / BackdoorBox）、差分隐私、深度强化学习</span></li>
-    </ul>
-  </section>
+  <div class="cols">
+    <div class="main">
 
-  <section id="projects">
-    <h2>项目经历</h2>
+      <section id="interests">
+        <h2>研究方向 <span class="en">Research Interests</span><span class="num">01</span></h2>
+        <div class="interest">
+          <span class="mark"></span>
+          <div><b>机器遗忘</b><span class="en-key">Machine Unlearning</span><p>如何在已训练模型中移除特定数据的影响：基于 WGAN 的遗忘方法、遗忘攻击与遗忘效果评估。</p></div>
+        </div>
+        <div class="interest">
+          <span class="mark"></span>
+          <div><b>AI 安全与隐私</b><span class="en-key">Security &amp; Privacy</span><p>后门攻防、成员推断、对抗样本与差分隐私。</p></div>
+        </div>
+        <div class="interest">
+          <span class="mark"></span>
+          <div><b>强化与模仿学习</b><span class="en-key">RL / Imitation Learning</span><p>PPO、A2C、GAIL 等算法在调度、驾驶等决策环境中的实现与研究。</p></div>
+        </div>
+        <div class="interest">
+          <span class="mark"></span>
+          <div><b>大模型与智能体</b><span class="en-key">LLM &amp; Agents</span><p>小型 GPT 从零训练，LLM 辅助科研与工程工具链。</p></div>
+        </div>
+      </section>
 
-    <div class="proj">
-      <div class="proj-head">
-        <span class="name">GAIL — 生成对抗模仿学习</span>
-        <span class="stack">Python · PyTorch</span>
-        <a class="link" href="https://github.com/akahello/GAIL" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-      <p>实现生成对抗模仿学习（Generative Adversarial Imitation Learning），从专家演示中学习策略。</p>
+      <section id="projects">
+        <h2>项目经历 <span class="en">Selected Projects</span><span class="num">02</span></h2>
+        <div class="tl">
+
+          <div class="tl-item">
+            <div class="tl-head">
+              <span class="name">GAIL · 生成对抗模仿学习</span>
+              <span class="pill gold">Python · PyTorch</span>
+              <a class="link" href="https://github.com/akahello/GAIL" target="_blank" rel="noopener">查看 ↗</a>
+            </div>
+            <p>实现生成对抗模仿学习（Generative Adversarial Imitation Learning），从专家演示中直接习得策略。</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-head">
+              <span class="name">DRL_IL_ADV · 深度强化学习算法集</span>
+              <span class="pill gold">Python</span>
+              <a class="link" href="https://github.com/akahello/DRL_IL_ADV" target="_blank" rel="noopener">查看 ↗</a>
+            </div>
+            <p>PPO、A2C 等深度强化学习算法与模仿学习、对抗样本实验的统一框架。</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-head">
+              <span class="name">wgan-unlearn · 机器遗忘</span>
+              <span class="pill gold">Python · PyTorch</span>
+              <a class="link" href="https://github.com/akahello/wgan-unlearn" target="_blank" rel="noopener">查看 ↗</a>
+            </div>
+            <p>利用生成对抗网络辅助遗忘特定样本在已训练模型中的痕迹。</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-head">
+              <span class="name">AD · 异常检测</span>
+              <span class="pill gold">Python</span>
+              <a class="link" href="https://github.com/akahello/AD" target="_blank" rel="noopener">查看 ↗</a>
+            </div>
+            <p>异常检测（Anomaly Detection）方法实验。</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-head">
+              <span class="name">patent-disclosure-skill · 专利交底书技能</span>
+              <span class="pill gold">Python · LLM</span>
+              <a class="link" href="https://github.com/akahello/patent-disclosure-skill" target="_blank" rel="noopener">查看 ↗</a>
+            </div>
+            <p>基于大模型的中国专利辅助工具：专利点挖掘、发明交底书编写、政策动向分析与审查意见答复。</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-head">
+              <span class="name">academic_paper_page · 学术论文主页</span>
+              <span class="pill gold">JavaScript</span>
+              <a class="link" href="https://github.com/akahello/academic_paper_page" target="_blank" rel="noopener">查看 ↗</a>
+            </div>
+            <p>为学术论文生成可分享的单页展示站点。</p>
+          </div>
+
+        </div>
+      </section>
     </div>
 
-    <div class="proj">
-      <div class="proj-head">
-        <span class="name">DRL_IL_ADV — 深度强化学习算法集合</span>
-        <span class="stack">Python</span>
-        <a class="link" href="https://github.com/akahello/DRL_IL_ADV" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-      <p>PPO、A2C 等深度强化学习算法与模仿学习、对抗样本实验的统一框架。</p>
-    </div>
+    <aside class="side">
 
-    <div class="proj">
-      <div class="proj-head">
-        <span class="name">wgan-unlearn — 基于 WGAN 的机器遗忘</span>
-        <span class="stack">Python · PyTorch</span>
-        <a class="link" href="https://github.com/akahello/wgan-unlearn" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="box">
+        <h3>专业技能</h3>
+        <div class="skill-group">
+          <div class="k">编程语言</div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">C++</span><span class="tag">LaTeX</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="k">框架工具</div>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Gym</span><span class="tag">HighwayEnv</span><span class="tag">Git</span><span class="tag">Linux</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="k">研究领域</div>
+          <div class="tags"><span class="tag">机器遗忘</span><span class="tag">后门攻防</span><span class="tag">差分隐私</span><span class="tag">深度强化学习</span></div>
+        </div>
       </div>
-      <p>探索利用生成对抗网络辅助遗忘特定样本在模型中的痕迹。</p>
-    </div>
 
-    <div class="proj">
-      <div class="proj-head">
-        <span class="name">AD — 异常检测</span>
-        <span class="stack">Python</span>
-        <a class="link" href="https://github.com/akahello/AD" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="box">
+        <h3>GitHub 概览</h3>
+        <div class="stat"><b>2021</b><span>年加入 GitHub</span></div>
+        <div class="stat"><b>100+</b><span>公开仓库</span></div>
+        <div class="stat"><b>4</b><span>主要研究方向</span></div>
       </div>
-      <p>异常检测（Anomaly Detection）方法实验。</p>
-    </div>
 
-    <div class="proj">
-      <div class="proj-head">
-        <span class="name">patent-disclosure-skill — 专利交底书技能</span>
-        <span class="stack">Python · LLM</span>
-        <a class="link" href="https://github.com/akahello/patent-disclosure-skill" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="box">
+        <h3>联系方式</h3>
+        <div class="side-links">
+          <a href="https://github.com/akahello" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            GitHub 主页 <span class="arr">→</span>
+          </a>
+          <!-- 邮箱：取消注释并替换地址
+          <a href="mailto:you@example.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            you@example.com <span class="arr">→</span>
+          </a>
+          -->
+        </div>
       </div>
-      <p>基于 LLM 的中国专利辅助工具：专利点挖掘、发明交底书编写、政策动向分析与审查意见答复。</p>
-    </div>
 
-    <div class="proj">
-      <div class="proj-head">
-        <span class="name">academic_paper_page — 学术论文主页</span>
-        <span class="stack">JavaScript</span>
-        <a class="link" href="https://github.com/akahello/academic_paper_page" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-      <p>为学术论文生成可分享的单页展示站点。</p>
-    </div>
-  </section>
+    </aside>
+  </div>
 
   <footer>
-    <span>© <span id="yr"></span> akahello</span>
-    <span>由 GitHub Pages 托管 · <a href="https://github.com/akahello/akahello.github.io" target="_blank" rel="noopener">查看源码</a></span>
+    <span>© <span id="yr"></span> akahello · 由 GitHub Pages 托管</span>
+    <span><a href="https://github.com/akahello/akahello.github.io" target="_blank" rel="noopener">查看源码</a></span>
   </footer>
 
 </div>
+
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
